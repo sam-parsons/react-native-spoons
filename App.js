@@ -7,7 +7,14 @@
  */
 
 import React, { Component } from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  ImageBackground,
+  Button
+} from "react-native";
 import {
   accelerometer,
   setUpdateIntervalForType,
@@ -89,14 +96,24 @@ export default class App extends Component<Props> {
   }
 
   triggerClick() {
-    click.play();
+    // click.play();
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Fringe Elements V</Text>
-      </View>
+      <ImageBackground
+        source={require("./assets/spoon.jpg")}
+        style={{ width: "100%", height: "100%" }}
+        imageStyle={{ resizeMode: "contain" }}
+      >
+        <View style={styles.leftButton}>
+          <Button
+            title="info"
+            color="white"
+            accessibilityLabel="Learn more info"
+          />
+        </View>
+      </ImageBackground>
     );
   }
 }
@@ -117,5 +134,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#333333",
     marginBottom: 5
+  },
+  leftButton: {
+    position: "absolute",
+    right: 35,
+    top: 55,
+    fontSize: 39,
+    backgroundColor: "gray",
+    height: 70,
+    width: 70,
+    borderRadius: 40,
+    justifyContent: "center"
   }
 });
