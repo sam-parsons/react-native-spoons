@@ -13,9 +13,11 @@
   <br>
 </p>
 
-<!-- <a href="https://sam-parsons.github.io/MultiMeterMetronome">
-  <img src="./assets/screenshot1.gif" alt="metro thumbnail" width="100%" />
-</a> -->
+<p align="center">
+    <a href="https://sam-parsons.github.io/MultiMeterMetronome">
+    <img src="./assets/screenshot.jpg" alt="metro thumbnail" width="50%" />
+    </a>
+</p>
 
 <br>
 <br>
