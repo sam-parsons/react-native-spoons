@@ -13,6 +13,7 @@ import {
   View,
   ScrollView,
   ImageBackground,
+  TouchableOpacity,
   Button
 } from "react-native";
 import {
@@ -62,7 +63,8 @@ export default class App extends Component<Props> {
     z: 0,
     sign: true,
     values: [],
-    angleY: 0
+    angleY: 0,
+    pressed: false
   };
 
   componentDidMount() {
@@ -78,7 +80,7 @@ export default class App extends Component<Props> {
       let values = this.state.values;
       values.push(y);
 
-      if (sign !== this.state.sign && values.length > 6) {
+      if (sign !== this.state.sign && values.length > 6 && this.state.pressed) {
         this.triggerClick();
 
         console.log(this.state.values);
@@ -96,7 +98,15 @@ export default class App extends Component<Props> {
   }
 
   triggerClick() {
-    // click.play();
+    click.play();
+  }
+
+  onPressIn() {
+    this.setState({ pressed: true });
+  }
+
+  onPressOut() {
+    this.setState({ pressed: false });
   }
 
   render() {
@@ -106,13 +116,25 @@ export default class App extends Component<Props> {
         style={{ width: "100%", height: "100%" }}
         imageStyle={{ resizeMode: "contain" }}
       >
+        <View style={styles.titleContainer}>
+          <Text style={styles.titleText}>Play</Text>
+          <Text style={styles.titleText}>Spoons!</Text>
+        </View>
         <View style={styles.leftButton}>
           <Button
             title="info"
             color="white"
+            fontSize="22"
             accessibilityLabel="Learn more info"
           />
         </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPressIn={this.onPressIn.bind(this)}
+          onPressOut={this.onPressOut.bind(this)}
+        >
+          <Text> Hold With Thumb</Text>
+        </TouchableOpacity>
       </ImageBackground>
     );
   }
@@ -130,6 +152,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 10
   },
+  button: {
+    position: "absolute",
+    bottom: 100,
+    height: 70,
+    width: "100%",
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10,
+    justifyContent: "center"
+  },
   instructions: {
     textAlign: "center",
     color: "#333333",
@@ -138,12 +170,21 @@ const styles = StyleSheet.create({
   leftButton: {
     position: "absolute",
     right: 35,
-    top: 55,
-    fontSize: 39,
+    top: 70,
     backgroundColor: "gray",
     height: 70,
     width: 70,
     borderRadius: 40,
     justifyContent: "center"
+  },
+  titleText: {
+    fontSize: 30,
+    fontFamily: "Iowan Old Style"
+  },
+  titleContainer: {
+    position: "absolute",
+    left: 15,
+    top: 70,
+    alignItems: "flex-end"
   }
 });
