@@ -7,7 +7,7 @@
  */
 
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import {
   accelerometer,
   setUpdateIntervalForType,
@@ -15,13 +15,13 @@ import {
 } from "react-native-sensors";
 import Sound from "react-native-sound";
 
-setUpdateIntervalForType(SensorTypes.accelerometer, 50);
+setUpdateIntervalForType(SensorTypes.accelerometer, 5);
+setUpdateIntervalForType(SensorTypes.gyroscope, 5);
 
 // Enable playback in silence mode
 Sound.setCategory("Playback");
 
-// Load the sound file 'whoosh.mp3' from the app bundle
-// See notes below about preloading sounds within initialization code below.
+// Load the click sound from the app bundle
 const click = new Sound("click.mp3", Sound.MAIN_BUNDLE, error => {
   if (error) {
     console.log("failed to load the sound", error);
@@ -52,35 +52,38 @@ export default class App extends Component<Props> {
   state = {
     x: 0,
     y: 0,
-    sign: true
+    z: 0,
+    sign: true,
+    values: [],
+    angleY: 0
   };
 
   componentDidMount() {
-    console.log("mounted");
-    console.log(this.state);
-
-    setTimeout(() => {
-      click.play();
-    }, 1000);
-
-    // App.js
-    accelerometer.subscribe(({ x, y }) => {
+    accelerometer.subscribe(({ x, y, z }) => {
       let sign = this.state.sign;
 
-      if (Math.abs(y) > 0.1) {
-        if (y > 0) {
-          sign = false;
-        } else if (y < 0) {
-          sign = true;
-        }
+      if (y > this.state.angleY) {
+        sign = false;
+      } else {
+        sign = true;
       }
 
-      if (sign !== this.state.sign) this.triggerClick();
+      let values = this.state.values;
+      values.push(y);
+
+      if (sign !== this.state.sign && values.length > 6) {
+        this.triggerClick();
+
+        console.log(this.state.values);
+        values = [];
+      }
 
       this.setState({
         x,
         y,
-        sign
+        z,
+        sign,
+        values
       });
     });
   }
