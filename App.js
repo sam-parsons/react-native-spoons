@@ -11,7 +11,6 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
   ImageBackground,
   TouchableOpacity,
   Button
@@ -68,33 +67,28 @@ export default class App extends Component<Props> {
   };
 
   componentDidMount() {
-    accelerometer.subscribe(({ x, y, z }) => {
-      let sign = this.state.sign;
-
-      if (y > this.state.angleY) {
-        sign = false;
-      } else {
-        sign = true;
-      }
-
-      let values = this.state.values;
-      values.push(y);
-
-      if (sign !== this.state.sign && values.length > 6 && this.state.pressed) {
-        this.triggerClick();
-
-        console.log(this.state.values);
-        values = [];
-      }
-
-      this.setState({
-        x,
-        y,
-        z,
-        sign,
-        values
-      });
-    });
+    // accelerometer.subscribe(({ x, y, z }) => {
+    //   let sign = this.state.sign;
+    //   if (y > this.state.angleY) {
+    //     sign = false;
+    //   } else {
+    //     sign = true;
+    //   }
+    //   let values = this.state.values;
+    //   values.push(y);
+    //   if (sign !== this.state.sign && values.length > 6 && this.state.pressed) {
+    //     this.triggerClick();
+    //     console.log(this.state.values);
+    //     values = [];
+    //   }
+    //   this.setState({
+    //     x,
+    //     y,
+    //     z,
+    //     sign,
+    //     values
+    //   });
+    // });
   }
 
   triggerClick() {
@@ -112,13 +106,18 @@ export default class App extends Component<Props> {
   render() {
     return (
       <ImageBackground
-        source={require("./assets/spoon.jpg")}
-        style={{ width: "100%", height: "100%" }}
+        source={require("./assets/spoon.png")}
+        style={{
+          width: "100%",
+          height: "100%",
+          marginTop: "5%",
+          marginBottom: "5%"
+        }}
         imageStyle={{ resizeMode: "contain" }}
       >
         <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>Play</Text>
-          <Text style={styles.titleText}>Spoons!</Text>
+          <Text style={styles.titleText} />
+          <Text style={styles.titleText}>Spoons</Text>
         </View>
         <View style={styles.leftButton}>
           <Button
@@ -169,22 +168,22 @@ const styles = StyleSheet.create({
   },
   leftButton: {
     position: "absolute",
-    right: 35,
-    top: 70,
-    backgroundColor: "gray",
+    left: 35,
+    top: 285,
+    backgroundColor: "#ccc",
     height: 70,
     width: 70,
     borderRadius: 40,
     justifyContent: "center"
   },
   titleText: {
-    fontSize: 30,
-    fontFamily: "Iowan Old Style"
+    fontSize: 40,
+    fontFamily: "Cochin"
   },
   titleContainer: {
     position: "absolute",
     left: 15,
-    top: 70,
+    top: 200,
     alignItems: "flex-end"
   }
 });

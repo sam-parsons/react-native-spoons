@@ -31,7 +31,7 @@ cd react-native-spoons/
 
 yarn
 
-yarn start
+react-native run-ios
 ```
 
 <!-- ## Features

@@ -38,9 +38,8 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		3C3C46B422C91FCA00A39E4F /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3C3C46B322C91FCA00A39E4F /* click.mp3 */; };
 		3C3C46B522C91FCA00A39E4F /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3C3C46B322C91FCA00A39E4F /* click.mp3 */; };
-		3C3C46B722C9433B00A39E4F /* spoon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3C3C46B622C9433B00A39E4F /* spoon.jpg */; };
-		3C3C46B822C9433B00A39E4F /* spoon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3C3C46B622C9433B00A39E4F /* spoon.jpg */; };
 		3C4DC1B022C6736900E99348 /* libRNSensors.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C4DC1AF22C672E500E99348 /* libRNSensors.a */; };
+		3C5E217822CCF0520003427E /* spoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C5E215022CCF0520003427E /* spoon.png */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
@@ -362,8 +361,8 @@
 		2D02E4901E0B4A5D006451C7 /* RNTEST-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RNTEST-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C3C46B322C91FCA00A39E4F /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = click.mp3; path = ../../../Documents/click.mp3; sourceTree = "<group>"; };
-		3C3C46B622C9433B00A39E4F /* spoon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spoon.jpg; path = ../../../Downloads/spoon.jpg; sourceTree = "<group>"; };
 		3C4DC17D22C672E500E99348 /* RNSensors.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSensors.xcodeproj; path = "../node_modules/react-native-sensors/ios/RNSensors.xcodeproj"; sourceTree = "<group>"; };
+		3C5E215022CCF0520003427E /* spoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spoon.png; path = ../../../Downloads/spoon.png; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6ACBDC64CA744B1EAE095F24 /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -633,7 +632,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				3C3C46B622C9433B00A39E4F /* spoon.jpg */,
+				3C5E215022CCF0520003427E /* spoon.png */,
 				3C3C46B322C91FCA00A39E4F /* click.mp3 */,
 				13B07FAE1A68108700A75B9A /* RNTEST */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -1132,7 +1131,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C3C46B522C91FCA00A39E4F /* click.mp3 in Resources */,
-				3C3C46B822C9433B00A39E4F /* spoon.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1143,7 +1141,7 @@
 				3C3C46B422C91FCA00A39E4F /* click.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				3C3C46B722C9433B00A39E4F /* spoon.jpg in Resources */,
+				3C5E217822CCF0520003427E /* spoon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
