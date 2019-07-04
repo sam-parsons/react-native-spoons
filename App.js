@@ -170,17 +170,20 @@ const styles = StyleSheet.create({
     right: 25,
     top: 15,
     backgroundColor: "#ddd",
-    height: 50,
-    width: 50,
+    height: 40,
+    width: 40,
     borderRadius: 40,
     justifyContent: "center",
     alignItems: "center"
   },
   infoTitle: {
     fontFamily: "Courier",
-    fontSize: 35,
     color: "white",
-    fontWeight: "400"
+    fontSize: 26,
+    fontWeight: "400",
+    textShadowColor: "rgba(0, 0, 0, 0.75)",
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 2
   },
   titleText: {
     fontSize: 40,
