@@ -13,7 +13,9 @@ import {
   View,
   ImageBackground,
   TouchableOpacity,
-  Button
+  Modal,
+  TouchableHighlight,
+  Alert
 } from "react-native";
 import {
   accelerometer,
@@ -22,8 +24,8 @@ import {
 } from "react-native-sensors";
 import Sound from "react-native-sound";
 
-setUpdateIntervalForType(SensorTypes.accelerometer, 5);
-setUpdateIntervalForType(SensorTypes.gyroscope, 5);
+setUpdateIntervalForType(SensorTypes.accelerometer, 250);
+setUpdateIntervalForType(SensorTypes.gyroscope, 250);
 
 // Enable playback in silence mode
 Sound.setCategory("Playback");
@@ -63,33 +65,34 @@ export default class App extends Component<Props> {
     sign: true,
     values: [],
     angleY: 0,
-    pressed: false
+    pressed: false,
+    modal: false
   };
 
-  // componentDidMount() {
-  //   accelerometer.subscribe(({ x, y, z }) => {
-  //     let sign = this.state.sign;
-  //     if (y > this.state.angleY) {
-  //       sign = false;
-  //     } else {
-  //       sign = true;
-  //     }
-  //     let values = this.state.values;
-  //     values.push(y);
-  //     if (sign !== this.state.sign && values.length > 6 && this.state.pressed) {
-  //       this.triggerClick();
-  //       console.log(this.state.values);
-  //       values = [];
-  //     }
-  //     this.setState({
-  //       x,
-  //       y,
-  //       z,
-  //       sign,
-  //       values
-  //     });
-  //   });
-  // }
+  componentDidMount() {
+    accelerometer.subscribe(({ x, y, z }) => {
+      let sign = this.state.sign;
+      if (y > this.state.angleY) {
+        sign = false;
+      } else {
+        sign = true;
+      }
+      let values = this.state.values;
+      values.push(y);
+      if (sign !== this.state.sign && values.length > 6 && this.state.pressed) {
+        this.triggerClick();
+        console.log(this.state.values);
+        values = [];
+      }
+      this.setState({
+        x,
+        y,
+        z,
+        sign,
+        values
+      });
+    });
+  }
 
   triggerClick() {
     click.play();
@@ -103,6 +106,14 @@ export default class App extends Component<Props> {
     this.setState({ pressed: false });
   }
 
+  infoPress() {
+    console.log("info pressed");
+  }
+
+  setModalVisible(visible) {
+    this.setState({ modal: visible });
+  }
+
   render() {
     return (
       <ImageBackground
@@ -114,8 +125,37 @@ export default class App extends Component<Props> {
           <Text style={styles.titleText}>Spoons</Text>
         </View>
         <View style={styles.leftButton}>
-          <Text style={styles.infoTitle}>i</Text>
+          <Text
+            style={styles.infoTitle}
+            onPress={() => {
+              this.setModalVisible(!this.state.modal);
+            }}
+          >
+            i
+          </Text>
         </View>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modal}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+          }}
+        >
+          <View style={{ marginTop: 22 }}>
+            <View>
+              <Text>Hello World!</Text>
+
+              <TouchableHighlight
+                onPress={() => {
+                  this.setModalVisible(!this.state.modal);
+                }}
+              >
+                <Text>Hide Modal</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
         <TouchableOpacity
           style={styles.button}
           onPressIn={this.onPressIn.bind(this)}
@@ -170,20 +210,20 @@ const styles = StyleSheet.create({
     right: 25,
     top: 15,
     backgroundColor: "#ddd",
-    height: 40,
-    width: 40,
+    height: 50,
+    width: 50,
     borderRadius: 40,
     justifyContent: "center",
     alignItems: "center"
   },
   infoTitle: {
     fontFamily: "Courier",
-    color: "white",
-    fontSize: 26,
+    color: "#AAA",
+    fontSize: 32,
     fontWeight: "400",
     textShadowColor: "rgba(0, 0, 0, 0.75)",
     textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 2
+    textShadowRadius: 1
   },
   titleText: {
     fontSize: 40,
