@@ -29,9 +29,9 @@ git clone https://github.com/sam-parsons/react-native-spoons.git
 
 cd react-native-spoons/
 
-yarn
+// In Xcode, open RNTEST.xcodeproj, build the project, and run on a phone
 
-react-native run-ios
+// This project requires using an actual phone as the development environment because the accelerometer will not work on an emulator
 ```
 
 <!-- ## Features
