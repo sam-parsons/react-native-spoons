@@ -4,10 +4,7 @@ import {
   Text,
   View,
   ImageBackground,
-  TouchableOpacity,
-  Modal,
-  TouchableHighlight,
-  Alert
+  TouchableOpacity
 } from "react-native";
 import {
   accelerometer,
@@ -50,35 +47,31 @@ click.setVolume(0.4);
 
 export default class App extends Component {
   state = {
-    x: 0,
     y: 0,
-    z: 0,
     sign: true,
     values: [],
     angleY: 0,
     pressed: false,
-    modal: false
+    threshold: 0.2
   };
 
   componentDidMount() {
-    accelerometer.subscribe(({ x, y, z }) => {
+    accelerometer.subscribe(({ y }) => {
       let sign = this.state.sign;
-      if (y > this.state.angleY) {
+      const threshold = Math.abs(y) > this.state.threshold;
+      if (y > this.state.angleY && threshold) {
         sign = false;
-      } else {
+      } else if (threshold) {
         sign = true;
       }
       let values = this.state.values;
       values.push(y);
       if (sign !== this.state.sign && values.length > 6 && this.state.pressed) {
         this.triggerClick();
-        console.log(this.state.values);
         values = [];
       }
       this.setState({
-        x,
         y,
-        z,
         sign,
         values
       });
@@ -129,11 +122,6 @@ const styles = StyleSheet.create({
     height: "100%",
     marginTop: "5%"
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
   button: {
     position: "absolute",
     bottom: 150,
@@ -150,31 +138,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: "Cochin",
     opacity: 1
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
-  },
-  leftButton: {
-    position: "absolute",
-    right: 25,
-    top: 15,
-    backgroundColor: "#ddd",
-    height: 50,
-    width: 50,
-    borderRadius: 40,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  infoTitle: {
-    fontFamily: "Courier",
-    color: "#AAA",
-    fontSize: 32,
-    fontWeight: "400",
-    textShadowColor: "rgba(0, 0, 0, 0.75)",
-    textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 1
   },
   titleText: {
     fontSize: 40,
