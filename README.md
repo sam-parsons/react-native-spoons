@@ -15,7 +15,7 @@
 
 <p align="center">
     <a href="https://sam-parsons.github.io/MultiMeterMetronome">
-    <img src="./assets/screenshot.jpg" alt="metro thumbnail" width="50%" />
+    <img src="./assets/screenshot.png" alt="metro thumbnail" width="50%" />
     </a>
 </p>
 

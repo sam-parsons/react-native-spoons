@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { Component } from "react";
 import {
   StyleSheet,
@@ -24,8 +16,8 @@ import {
 } from "react-native-sensors";
 import Sound from "react-native-sound";
 
-setUpdateIntervalForType(SensorTypes.accelerometer, 250);
-setUpdateIntervalForType(SensorTypes.gyroscope, 250);
+setUpdateIntervalForType(SensorTypes.accelerometer, 5);
+setUpdateIntervalForType(SensorTypes.gyroscope, 5);
 
 // Enable playback in silence mode
 Sound.setCategory("Playback");
@@ -56,8 +48,7 @@ const click = new Sound("click.mp3", Sound.MAIN_BUNDLE, error => {
 
 click.setVolume(0.4);
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   state = {
     x: 0,
     y: 0,
@@ -106,14 +97,6 @@ export default class App extends Component<Props> {
     this.setState({ pressed: false });
   }
 
-  infoPress() {
-    console.log("info pressed");
-  }
-
-  setModalVisible(visible) {
-    this.setState({ modal: visible });
-  }
-
   render() {
     return (
       <ImageBackground
@@ -124,38 +107,6 @@ export default class App extends Component<Props> {
         <View style={styles.titleContainer}>
           <Text style={styles.titleText}>Spoons</Text>
         </View>
-        <View style={styles.leftButton}>
-          <Text
-            style={styles.infoTitle}
-            onPress={() => {
-              this.setModalVisible(!this.state.modal);
-            }}
-          >
-            i
-          </Text>
-        </View>
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modal}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-          }}
-        >
-          <View style={{ marginTop: 22 }}>
-            <View>
-              <Text>Hello World!</Text>
-
-              <TouchableHighlight
-                onPress={() => {
-                  this.setModalVisible(!this.state.modal);
-                }}
-              >
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-        </Modal>
         <TouchableOpacity
           style={styles.button}
           onPressIn={this.onPressIn.bind(this)}
